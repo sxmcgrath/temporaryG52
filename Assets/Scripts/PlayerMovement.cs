@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour {
+
+    // Store Serializable fields
+    [SerializeField] private Transform playerCamera = null;
+    [SerializeField] private float mouseSensitivity = 3.5f;
+    [SerializeField] private float walkSpeed = 6.0f;
+
+    // Set Camera pitch to look forward at start
+    private float cameraPitch = 0.0f;
+    [SerializeField] private bool lockCursor = true;
+
+    // Start is called before the first frame update
+    void Start() {
+        // Lock cursor to middle of screen and make invisible if lockCursor set to true
+        if (lockCursor) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    // Update is called once per frame
+    void Update() {
+        UpdateCameraView();
+    }
+
+    // Rotate player around Y axis when looking horizontally, but rotate camera around X axis when
+    // looking vertically.
+    void UpdateCameraView() {
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); 
+        
+        // Vector3.up is shorthand for (0, 1, 0).
+        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
+
+        // The vertical mouseDelta is -ve when movining down and +ve when moving up.
+        // However the camera's x-rotation increases to pitch down and decreases to pitch up.
+        // This means the values are inverted. So do -= to apply the inverse of the mouseDelta.
+        cameraPitch -= mouseDelta.y * mouseSensitivity;
+
+        // Camera pitch is -90 when looking directly up, 0 when looking forward and 90 when
+        // looking directly down. Clamp the values so camera cannot go further than this.
+        cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+
+        // Rotate playerCamera around x axis by the cameraPitch
+        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
+    }
+
+}
