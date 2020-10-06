@@ -32,7 +32,7 @@ public class TongueSwing : MonoBehaviour {
 
     void StartGrapple() {
         RaycastHit hit;
-        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxDistance)) {
+        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxDistance, grappleableLayers)) {
             if (hit.collider != null) {
                 grapplePoint = hit.point;
                 joint = player.gameObject.AddComponent<SpringJoint>();
