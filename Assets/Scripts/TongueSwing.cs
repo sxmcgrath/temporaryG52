@@ -4,34 +4,40 @@ using UnityEngine;
 
 public class TongueSwing : MonoBehaviour {
     
-    private LineRenderer lr;
-    private Vector3 grapplePoint;
-    public LayerMask grappleableLayers;
+    // Assign GameObjects from Inspector
     public Transform tongueTip, frogViewCam, player;
+    public LayerMask grappleableLayers;
+
+    // Prepare tongue variables
+    private LineRenderer lr;
+    private Vector3 grapplePoint, currentGrapplePosition;
     private SpringJoint joint;
-
     private float maxDistance = 100.0f;
-    private Vector3 currentGrapplePosition;
 
-    void Awake() {
+    // Set up initial references
+    private void Awake() {
         lr = GetComponent<LineRenderer>();
     }
 
-    void Update() {
+    // Shoot tongue on mouse click and retract tongue on mouse up. (Tongue remains when holding)
+    private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            StartGrapple();
+            ShootTongue();
             
         } else if (Input.GetMouseButtonUp(0)) {
-            StopGrapple();
+            RetractTongue();
         }
     }
 
-    void LateUpdate() {
+    // Late update as we want to draw the tongue after the positions are taken.
+    private void LateUpdate() {
         DrawTongue();
     }
 
-    void StartGrapple() {
+    // Use Raycast to determine info about which object to shoot tongue at.
+    private void ShootTongue() {
         RaycastHit hit;
+        // Check if there is an object with a layer that the tongue can stick to.
         if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxDistance, grappleableLayers)) {
             if (hit.collider != null) {
                 grapplePoint = hit.point;
@@ -56,7 +62,8 @@ public class TongueSwing : MonoBehaviour {
         }
     }
 
-    void DrawTongue() {
+    // Draw the tongue from tongueTip to grapplePoint
+    private void DrawTongue() {
         if (!joint) return;
 
         currentGrapplePosition = Vector3.Lerp(currentGrapplePosition, grapplePoint, Time.deltaTime * 8f);
@@ -65,7 +72,8 @@ public class TongueSwing : MonoBehaviour {
         lr.SetPosition(1, grapplePoint);
     }
 
-    void StopGrapple() {
+    // Stop sticking tongue to object
+    private void RetractTongue() {
         lr.positionCount = 0;
         Destroy(joint);
     }

@@ -3,49 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+    [SerializeField] private float walkSpeed = 4.0f, jumpForce = 4.0f;
 
-    // Store Serializable fields
-    [SerializeField] private Transform playerCamera = null;
-    [SerializeField] private float mouseSensitivity = 3.5f;
-    [SerializeField] private float walkSpeed = 6.0f;
+    // Max distance ray can shoot. Shoots from center of player straight down to check if bottom of player is
+    // touching ground. (E.g. if center of player to bottom of player is 1.5f, then add .1f to account for slopes)
+    [SerializeField] private float jumpRaycastDistance = 1.6f;
 
-    // Set Camera pitch to look forward at start
-    private float cameraPitch = 0.0f;
-    [SerializeField] private bool lockCursor = true;
+    private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start() {
-        // Lock cursor to middle of screen and make invisible if lockCursor set to true
-        if (lockCursor) {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+    // Set up initial references
+    private void Awake() {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update() {
+        Jump();
+    }
+
+    // Same as Update but works on every physics step
+    private void FixedUpdate() {
+        Move();
+    }
+
+    private void Move() {
+        // Store Raw Directional input and normalize so diagonal movement is not faster
+        Vector2 inputDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        inputDir.Normalize();
+
+        // Move Player by velocity
+        Vector3 velocity = new Vector3(inputDir.x, 0.0f, inputDir.y) * walkSpeed * Time.fixedDeltaTime;
+        // Ensure direction is oriented to where player is facing
+        Vector3 newPosition = rb.position + rb.transform.TransformDirection(velocity);
+
+        rb.MovePosition(newPosition);
+    }
+
+    // This implementation may have difficulties with double jumps (mid air jumps)
+    private void Jump() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (isGrounded()) {
+                rb.AddForce(0.0f, jumpForce, 0.0f, ForceMode.Impulse);
+            }
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-        UpdateCameraView();
+    // Use raycast to check if there is ground below player.
+    private bool isGrounded() {
+        return Physics.Raycast(transform.position, Vector3.down, jumpRaycastDistance);
     }
-
-    // Rotate player around Y axis when looking horizontally, but rotate camera around X axis when
-    // looking vertically.
-    void UpdateCameraView() {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); 
-        
-        // Vector3.up is shorthand for (0, 1, 0).
-        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
-
-        // The vertical mouseDelta is -ve when movining down and +ve when moving up.
-        // However the camera's x-rotation increases to pitch down and decreases to pitch up.
-        // This means the values are inverted. So do -= to apply the inverse of the mouseDelta.
-        cameraPitch -= mouseDelta.y * mouseSensitivity;
-
-        // Camera pitch is -90 when looking directly up, 0 when looking forward and 90 when
-        // looking directly down. Clamp the values so camera cannot go further than this.
-        cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
-
-        // Rotate playerCamera around x axis by the cameraPitch
-        playerCamera.localEulerAngles = Vector3.right * cameraPitch;
-    }
-
 }
