@@ -14,6 +14,8 @@ public class TongueSwing : MonoBehaviour {
     private SpringJoint joint;
     private float maxDistance = 100.0f;
 
+    public GameObject salivaPrefab;
+
     // Set up initial references
     private void Awake() {
         lr = GetComponent<LineRenderer>();
@@ -40,6 +42,9 @@ public class TongueSwing : MonoBehaviour {
         // Check if there is an object with a layer that the tongue can stick to.
         if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxDistance, grappleableLayers)) {
             if (hit.collider != null) {
+
+                
+
                 grapplePoint = hit.point;
                 joint = player.gameObject.AddComponent<SpringJoint>();
                 joint.autoConfigureConnectedAnchor = false;
@@ -58,6 +63,7 @@ public class TongueSwing : MonoBehaviour {
 
                 lr.positionCount = 2;
                 currentGrapplePosition = tongueTip.position;
+                createParticles(hit);
             }
         }
     }
@@ -70,6 +76,7 @@ public class TongueSwing : MonoBehaviour {
 
         lr.SetPosition(0, tongueTip.position);
         lr.SetPosition(1, grapplePoint);
+        
     }
 
     // Stop sticking tongue to object
@@ -77,4 +84,25 @@ public class TongueSwing : MonoBehaviour {
         lr.positionCount = 0;
         Destroy(joint);
     }
+
+    // Create saliva particles at grapple point
+    private void createParticles(RaycastHit hit) {
+        
+        Debug.Log(hit.normal);
+
+        
+        GameObject saliva  = Instantiate(salivaPrefab, grapplePoint, Quaternion.Euler(new Vector3(0,0,0)));
+        var v = new Vector3(170,90,90);
+        
+        Debug.Log("rot1: " + saliva.transform.eulerAngles);
+        saliva.transform.rotation = Quaternion.Euler(v);
+        
+        Debug.Log("rot2: " + saliva.transform.eulerAngles);
+        Debug.Log("rot2 Local: " + saliva.transform.localEulerAngles);
+        var ps = saliva.GetComponentInChildren<ParticleSystem>();
+
+        ps.Play();
+
+    
+    }   
 }

@@ -1466,6 +1466,8 @@ MonoBehaviour:
   grappleableLayers:
     serializedVersion: 2
     m_Bits: 256
+  salivaPrefab: {fileID: 3680570799059585733, guid: 5d21fa92560a0654fa4bc42c110e5c57,
+    type: 3}
 --- !u!120 &1437499399
 LineRenderer:
   m_ObjectHideFlags: 0
