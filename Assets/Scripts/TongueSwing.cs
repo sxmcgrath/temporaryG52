@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.IO.Pipes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -86,23 +87,10 @@ public class TongueSwing : MonoBehaviour {
     }
 
     // Create saliva particles at grapple point
-    private void createParticles(RaycastHit hit) {
-        
-        Debug.Log(hit.normal);
-
-        
-        GameObject saliva  = Instantiate(salivaPrefab, grapplePoint, Quaternion.Euler(new Vector3(0,0,0)));
-        var v = new Vector3(170,90,90);
-        
-        Debug.Log("rot1: " + saliva.transform.eulerAngles);
-        saliva.transform.rotation = Quaternion.Euler(v);
-        
-        Debug.Log("rot2: " + saliva.transform.eulerAngles);
-        Debug.Log("rot2 Local: " + saliva.transform.localEulerAngles);
-        var ps = saliva.GetComponentInChildren<ParticleSystem>();
-
-        ps.Play();
-
-    
+    private void createParticles(RaycastHit hit) {  
+        GameObject saliva  = Instantiate(salivaPrefab, hit.point, Quaternion.identity);
+        saliva.transform.LookAt(hit.point + hit.normal);
+        var ps = saliva.GetComponent<ParticleSystem>();
+        ps.Play(); 
     }   
 }
