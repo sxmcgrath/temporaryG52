@@ -7,8 +7,6 @@ public class isPaused : MonoBehaviour
 
     public static bool isGamePaused = false;
     public GameObject pauseMenu;
-    public GameObject menuBG;
-
     public GameObject player;
 
 
@@ -17,9 +15,9 @@ public class isPaused : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
         {
-
+            print(889);
             // if (isGamePaused)
             // {
             //     player.GetComponent<FirstPersonCam>().gamePlaying();
@@ -44,7 +42,6 @@ public class isPaused : MonoBehaviour
 
         player.GetComponent<FirstPersonCam>().gamePausing();
         pauseMenu.SetActive(true);
-        menuBG.SetActive(true);
         Time.timeScale = 0;
         isGamePaused = true;
     }
