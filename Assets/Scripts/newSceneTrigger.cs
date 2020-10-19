@@ -8,6 +8,6 @@ public class newSceneTrigger : MonoBehaviour
 {
     public int nextSceneNum;
     void onTriggerEnter(Collider other){
-        SceneManager.LoadScene(nextSceneNum);
+        SceneManager.LoadScene(1);
     }
 }
