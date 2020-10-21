@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1bd17e6379c474b84472acbddedda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 1419951703769164}
+  pauseMenu: {fileID: 0}
   player: {fileID: 1019198192}
 --- !u!114 &962011698
 MonoBehaviour:
@@ -5294,7 +5294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1443681355988514
 GameObject:
   m_ObjectHideFlags: 0
@@ -7186,27 +7186,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcbdb54739de444ab8e0dc4b527da94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBrightness: 1
-  defaultVolume: 0.5
-  defaultSen: 4
-  defaultInvertY: 0
-  _newGameButtonLevel: Add Your Level Here!
   menuDefaultCanvas: {fileID: 1939101421867524}
   GeneralSettingsCanvas: {fileID: 1053072080265508}
-  graphicsMenu: {fileID: 0}
   soundMenu: {fileID: 0}
   gameplayMenu: {fileID: 0}
-  controlsMenu: {fileID: 0}
   confirmationMenu: {fileID: 0}
   noSaveDialog: {fileID: 1207113186334640}
   dialog_newStart: {fileID: 2142153710}
-  loadGameDialog: {fileID: 1443681355988514}
-  controllerSenText: {fileID: 0}
-  controllerSenSlider: {fileID: 0}
   controlSenFloat: 4
-  brightnessEffect: {fileID: 0}
-  brightnessSlider: {fileID: 0}
-  brightnessText: {fileID: 0}
   volumeText: {fileID: 0}
   volumeSlider: {fileID: 0}
   invertYToggle: {fileID: 0}
