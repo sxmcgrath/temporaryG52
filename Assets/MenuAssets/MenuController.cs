@@ -35,9 +35,7 @@ namespace SpeedTutorMainMenuSystem
         [Header("Main Menu Components")]
         [SerializeField] private GameObject menuDefaultCanvas;
         [SerializeField] private GameObject GeneralSettingsCanvas;
-        [SerializeField] private GameObject soundMenu;
-        [SerializeField] private GameObject gameplayMenu;
-        [SerializeField] private GameObject confirmationMenu;
+        [SerializeField] private GameObject menu_instruction;
         [Space(10)]
         [Header("Menu Popout Dialogs")]
 
@@ -63,12 +61,6 @@ namespace SpeedTutorMainMenuSystem
         // #endregion
 
         //MAIN SECTION
-        public IEnumerator ConfirmationBox()
-        {
-            confirmationMenu.SetActive(true);
-            yield return new WaitForSeconds(2);
-            confirmationMenu.SetActive(false);
-        }
 
         private void Update()
         {
@@ -85,7 +77,6 @@ namespace SpeedTutorMainMenuSystem
 
                 else if (menuNumber == 3 || menuNumber == 4 || menuNumber == 5)
                 {
-                    GoBackToOptionsMenu();
                     ClickSound();
                 }
 
@@ -107,7 +98,6 @@ namespace SpeedTutorMainMenuSystem
             if (buttonType == "BACK")
             {
                 // GeneralSettingsCanvas.SetActive(false);
-                // soundMenu.SetActive(true);
                 print(4);
                 GoBackToMainMenu();
                 menuNumber = 4;
@@ -128,6 +118,13 @@ namespace SpeedTutorMainMenuSystem
                 menuNumber = 2;
             }
 
+            if (buttonType == "INSTRUCTION")
+            {
+                menuDefaultCanvas.SetActive(false);
+                menu_instruction.SetActive(true);
+                menuNumber = 2;
+            }
+
 
             if (buttonType == "START")
             {
@@ -142,15 +139,14 @@ namespace SpeedTutorMainMenuSystem
         public void VolumeSlider(float volume)
         {
             AudioListener.volume = volume;
-            volumeText.text = volume.ToString("0.0");
+            // volumeText.text = volume.ToString("0.0");
         }
 
-        public void VolumeApply()
-        {
-            PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
-            Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
-            StartCoroutine(ConfirmationBox());
-        }
+        // public void VolumeApply()
+        // {
+        //     PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
+        //     Debug.Log(PlayerPrefs.GetFloat("masterVolume"));
+        // }
 
 
 
@@ -169,16 +165,7 @@ namespace SpeedTutorMainMenuSystem
             }
         }
 
-        // #region Back to Menus
-        public void GoBackToOptionsMenu()
-        {
-            GeneralSettingsCanvas.SetActive(true);
-            soundMenu.SetActive(false);
-            gameplayMenu.SetActive(false);
-            VolumeApply();
 
-            menuNumber = 2;
-        }
 
         public void GoBackToMainMenu()
         {
@@ -186,8 +173,7 @@ namespace SpeedTutorMainMenuSystem
             menuDefaultCanvas.SetActive(true);
             dialog_newStart.SetActive(false);
             GeneralSettingsCanvas.SetActive(false);
-            soundMenu.SetActive(false);
-            gameplayMenu.SetActive(false);
+            menu_instruction.SetActive(false);
             menuNumber = 1;
         }
 
