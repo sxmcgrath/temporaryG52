@@ -19,6 +19,14 @@ public class PlayerMovement : MonoBehaviour {
     public float swingMult = 1.5f;
     private Rigidbody rb;
 
+
+    public float getSpeed() {
+        return walkSpeed;
+    }
+    public void setSpeed(float newSpeed) {
+        walkSpeed = newSpeed;
+    }
+
     // Set up initial references
     private void Awake() {
         rb = GetComponent<Rigidbody>();

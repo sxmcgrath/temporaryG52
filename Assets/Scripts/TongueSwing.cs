@@ -15,15 +15,32 @@ public class TongueSwing : MonoBehaviour {
     public Transform tongueTip, frogViewCam, player;
     public LayerMask grappleableLayers;
     public GameObject untargettedCursor, targettedCursor;
+    public float maxTongueLength = 30.0f;
 
     // Prepare tongue variables
     private LineRenderer lr;
     private Vector3 grapplePoint, originGrapplePosition;
     private SpringJoint joint;
-    private float maxDistance = 50.0f, tongueLength;
+    private float tongueLength;
     private RaycastHit grappleable;
-    private bool intersecting = false;
+    private bool intersecting = false, strongTongue = false;
     private GameObject curAttachedObject;
+
+    public float getMaxTongueLength() {
+        return maxTongueLength;
+    }
+    
+    public void setMaxTongueLength(float newTongueLength) {
+        maxTongueLength = newTongueLength;
+    }
+
+    public bool getStrongTongue() {
+        return strongTongue;
+    }
+    
+    public void setStrongTongue(bool isStrongTongue) {
+        strongTongue = isStrongTongue;
+    }
 
     // Set up initial references
     private void Awake() {
@@ -34,11 +51,11 @@ public class TongueSwing : MonoBehaviour {
     private void Update() {
         ChangeCursorIfGrappleable();
 
-        if (Input.GetMouseButtonDown(0)) {
+        if (!joint && Input.GetMouseButtonDown(0)) {
             ShootTongue();
-        } else if (Input.GetMouseButton(0)) {
+        } else if (joint && Input.GetMouseButton(0)) {
             IntersectTongue();
-        } else if (Input.GetMouseButtonUp(0)) {
+        } else if (joint && Input.GetMouseButtonUp(0)) {
             RetractTongue();
         }
     }
@@ -55,7 +72,7 @@ public class TongueSwing : MonoBehaviour {
     private void ShootTongue() {
         RaycastHit hit;
         // Check if there is an object with a layer that the tongue can stick to.
-        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxDistance, grappleableLayers)) {
+        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxTongueLength, grappleableLayers)) {
             if (hit.collider != null) {
                 curAttachedObject = hit.collider.gameObject;
                 grapplePoint = hit.point;
@@ -67,7 +84,7 @@ public class TongueSwing : MonoBehaviour {
                 float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
 
                 // The distance range that tongue will stay between
-                joint.maxDistance = distanceFromPoint * 0.6f;
+                joint.maxDistance = distanceFromPoint * 0.4f;
                 joint.minDistance = distanceFromPoint * 0.2f;
 
                 // Important properties for feel of grapple
@@ -81,9 +98,9 @@ public class TongueSwing : MonoBehaviour {
         } 
     }
 
-    // If aiming at object within maxDistance range and is a grappleable layer, then change cursor to show.
+    // If aiming at object within maxTongueLength range and is a grappleable layer, then change cursor to show.
     private void ChangeCursorIfGrappleable() {
-        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out grappleable, maxDistance, grappleableLayers)) {
+        if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out grappleable, maxTongueLength, grappleableLayers)) {
             if (grappleable.collider != null) {
                 untargettedCursor.SetActive(false);
                 targettedCursor.SetActive(true);
@@ -103,7 +120,7 @@ public class TongueSwing : MonoBehaviour {
         
         if (Physics.Raycast(frogViewCam.position, lineDir.normalized, out intersect, tongueLength, grappleableLayers)) {
             if (intersect.collider != null) {
-                if (curAttachedObject == intersect.collider.gameObject) {
+                if (strongTongue || curAttachedObject == intersect.collider.gameObject) {
                     grapplePoint = intersect.point;
                     joint.connectedAnchor = grapplePoint;
 
