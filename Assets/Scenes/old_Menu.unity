@@ -728,7 +728,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcbdb54739de444ab8e0dc4b527da94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   menuNumber: 0
+=======
+>>>>>>> newMenu
   menuDefaultCanvas: {fileID: 0}
   GeneralSettingsCanvas: {fileID: 0}
   menu_instruction: {fileID: 0}
@@ -1149,7 +1152,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: BACK
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1165,7 +1172,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -1978,7 +1990,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1994,7 +2010,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -2457,7 +2478,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: VOLUME
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2473,7 +2498,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -3607,7 +3637,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: EXIT
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3623,7 +3657,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -3929,7 +3968,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: SETTING
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3945,7 +3988,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -4259,7 +4307,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: SETTING
   m_isRightToLeft: 0
+<<<<<<< HEAD
   m_fontAsset: {fileID: 0}
+=======
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+>>>>>>> newMenu
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4275,7 +4327,12 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
+<<<<<<< HEAD
   m_fontColorGradientPreset: {fileID: 0}
+=======
+  m_fontColorGradientPreset: {fileID: 11400000, guid: d3219f8b6451c4548a4ca10d0d18ffc2,
+    type: 2}
+>>>>>>> newMenu
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0

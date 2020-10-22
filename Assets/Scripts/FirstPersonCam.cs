@@ -7,7 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonCam : MonoBehaviour {
+public class FirstPersonCam : MonoBehaviour
+{
     // Store Serializable fields
     [SerializeField] private Transform playerCamera = null;
     [SerializeField] private float mouseSensitivity = 3.5f;
@@ -15,26 +16,49 @@ public class FirstPersonCam : MonoBehaviour {
 
     // Set Camera pitch to look forward at start
     private float cameraPitch = 0.0f;
+    private bool isPlaying = true;
 
     // Start is called before the first frame update
-    private void Start() {
+    private void Start()
+    {
         // Lock cursor to middle of screen and make invisible if lockCursor set to true
-        if (lockCursor) {
+        if (lockCursor)
+        {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
 
+
+
+    public void gamePausing()
+    {
+        isPlaying = false;
+    }
+
+    public void gamePlaying()
+    {
+        isPlaying = true;
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     // Update is called once per frame
-    private void Update() {
-        UpdateCameraView();
+    private void Update()
+    {
+        if (isPlaying)
+        {
+            UpdateCameraView();
+        }
     }
 
     // Rotate player around Y axis when looking horizontally, but rotate camera around X axis when
     // looking vertically.
-    private void UpdateCameraView() {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); 
-        
+    private void UpdateCameraView()
+    {
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
         // Vector3.up is shorthand for (0, 1, 0).
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity);
 
