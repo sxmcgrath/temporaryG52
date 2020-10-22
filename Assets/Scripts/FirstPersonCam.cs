@@ -34,9 +34,10 @@ public class FirstPersonCam : MonoBehaviour
     public void gamePausing()
     {
         isPlaying = false;
+        Time.timeScale = 0;
     }
 
-    public void gamePlaying()
+    public void gameResuming()
     {
         isPlaying = true;
         Time.timeScale = 1;

@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 // This function is learned and adpated from here: https://www.youtube.com/watch?v=QZDw8ycoLRw
-public class volumeSlider : MonoBehaviour
+public class BG_Volume : MonoBehaviour
 {
-
-
     private AudioSource audioBG;
-
 
     private float volumeBG = 1f;
 
@@ -22,8 +20,8 @@ public class volumeSlider : MonoBehaviour
     }
 
 
-    public void SetVolume(float volIn)
+    public void SetVolume(Slider volIn)
     {
-        volumeBG = volIn;
+        volumeBG = volIn.value;
     }
 }
