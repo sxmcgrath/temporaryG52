@@ -94,7 +94,7 @@ public class MenuController : MonoBehaviour
         }
 
 
-        if (buttonType == "Exit")
+        if (buttonType == "EXIT")
         {
             print("exit the game");
             Application.Quit();
