@@ -21,18 +21,10 @@ public class DrawPowerup : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         powerUps = player.GetComponent<PowerupsTaken>().GetPowerUps();
-        // foreach(PowerUpsAvailable pw in powerUps) {
-        //     if (pw == PowerUpsAvailable.MaxTongueLength) {
-        //         Debug.Log("Tongue");
-        //     } else if (pw == PowerUpsAvailable.Speed) {
-        //         Debug.Log("Speed");
 
-        //     }
-        // }
         if (powerUps.Count > 0) {
             for (int i = 0; i < powerUps.Count; i++) {
-                Debug.Log(i);
-                Debug.Log(powerUps[i]);
+
                 if (powerUps[i] == PowerUpsAvailable.MaxTongueLength) {
                     lengthPowerUp.SetActive(true);
                     lengthPowerUp.transform.position = new Vector2((transform.position.x - (canvasWidthHeight.x / 2) + (powerupWidthHeight.x / 2) + UIBuffer) + (powerupWidthHeight.x * i), 
