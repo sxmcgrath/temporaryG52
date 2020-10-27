@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class newSceneTrigger : MonoBehaviour
 {
-    public int nextSceneNum;
-    void onTriggerEnter(Collider other){
-        SceneManager.LoadScene(1);
-    }
+    void OnTriggerEnter(Collider other) {
+       if(other.gameObject.tag=="Player")
+ {
+  int y = SceneManager.GetActiveScene().buildIndex;
+  SceneManager.LoadScene(y+1);
+ }
+     }
 }
