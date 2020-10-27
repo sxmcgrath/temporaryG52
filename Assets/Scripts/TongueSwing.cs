@@ -50,7 +50,9 @@ public class TongueSwing : MonoBehaviour {
     // Shoot tongue on mouse click and retract tongue on mouse up. (Tongue remains when holding)
     private void Update() {
         ChangeCursorIfGrappleable();
+    }
 
+    private void FixedUpdate() {
         if (!joint && Input.GetMouseButtonDown(0)) {
             ShootTongue();
         } else if (joint && Input.GetMouseButton(0)) {

@@ -10,6 +10,7 @@ public enum PowerUpsAvailable {
 }
 
 public class Powerup : MonoBehaviour {
+
     public PowerUpsAvailable powerUpType;
     public float speedBuff = 4.0f, tongueLengthMultiplier = 2.0f;
     public float buffDuration = 10.0f, amplitude = 0.5f, frequency = 1f;
@@ -36,6 +37,7 @@ public class Powerup : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
             StartCoroutine(Pickup(other));
+
         }
     }
 
@@ -45,11 +47,15 @@ public class Powerup : MonoBehaviour {
 
         PlayerMovement movement = player.gameObject.GetComponent<PlayerMovement>();
         TongueSwing tongue = player.gameObject.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TongueSwing>();
+        PowerupsTaken playerPowerups = player.gameObject.GetComponent<PowerupsTaken>();
+        
         // Apply effect to player
         if (powerUpType == PowerUpsAvailable.Speed) {
             movement.setSpeed(movement.getSpeed() + speedBuff);
+            playerPowerups.AddPowerUp(powerUpType);
         } else if (powerUpType == PowerUpsAvailable.MaxTongueLength) {
             tongue.setMaxTongueLength(tongue.getMaxTongueLength() * tongueLengthMultiplier);
+            playerPowerups.AddPowerUp(powerUpType);
         } else if (powerUpType == PowerUpsAvailable.StrongTongue) {
             tongue.setStrongTongue(true);
         }
@@ -65,12 +71,14 @@ public class Powerup : MonoBehaviour {
 
         // Wait for powerup to run out
         yield return new WaitForSeconds(buffDuration);
-
+        
         // Revert player speed.
         if (powerUpType == PowerUpsAvailable.Speed) {
             movement.setSpeed(movement.getSpeed() - speedBuff);
+            playerPowerups.RemovePowerUp(powerUpType);
         } else if (powerUpType == PowerUpsAvailable.MaxTongueLength) {
             tongue.setMaxTongueLength(tongue.getMaxTongueLength() / tongueLengthMultiplier);
+            playerPowerups.RemovePowerUp(powerUpType);
         } else if (powerUpType == PowerUpsAvailable.StrongTongue) {
             tongue.setStrongTongue(false);
         }
