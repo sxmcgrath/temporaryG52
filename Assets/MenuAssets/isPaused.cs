@@ -7,17 +7,17 @@ public class isPaused : MonoBehaviour
 {
 
     public static bool isGamePaused = false;
+    public static bool isInstruction = false;
     public GameObject pauseMenu;
     public GameObject player;
+    [SerializeField] private GameObject menu_instruction;
 
 
     public void MouseClick(string buttonType)
     {
         if (buttonType == "RESUME")
         {
-            player.GetComponent<FirstPersonCam>().gameResuming();
-            pauseMenu.SetActive(false);
-            isGamePaused = false;
+            gameResume();
         }
         else if (buttonType == "RESTART")
         {
@@ -30,19 +30,35 @@ public class isPaused : MonoBehaviour
         }
         else if (buttonType == "QUIT")
         {
-            print(0);
             SceneManager.LoadScene(0);
+        }
+
+        else if (buttonType == "INSTRUCTION")
+        {
+
+            if (isInstruction)
+            {
+                menu_instruction.SetActive(false);
+                isInstruction = false;
+            }
+            else
+            {
+                menu_instruction.SetActive(true);
+                isInstruction = true;
+            }
         }
     }
 
 
+    void Start()
+    {
+        gameResume();
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
         {
-
             if (isGamePaused)
             {
                 gameResume();

@@ -7,7 +7,7 @@ public class BG_Volume : MonoBehaviour
 {
     private AudioSource audioBG;
 
-    private float volumeBG = 1f;
+    private float volumeBG = 0.7f;
 
     void Start()
     {

@@ -23,12 +23,18 @@ public class level_text : MonoBehaviour
 
     public void levelUp()
     {
-        currentLevel = currentLevel + 1;
+        if (currentLevel < 3)
+        {
+            currentLevel = currentLevel + 1;
+        }
     }
 
 
     public void levelDown()
     {
-        currentLevel = currentLevel - 1;
+        if (currentLevel > 1)
+        {
+            currentLevel = currentLevel - 1;
+        }
     }
 }
