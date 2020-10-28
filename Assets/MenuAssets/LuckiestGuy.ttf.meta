@@ -3,11 +3,12 @@ guid: 4138b77faa69ef043b4a816470d25b95
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 50
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
+  fontName: Luckiest Guy
   fontNames:
   - Luckiest Guy
   fallbackFontReferences: []
