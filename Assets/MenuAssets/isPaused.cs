@@ -17,9 +17,6 @@ public class isPaused : MonoBehaviour
     {
         if (buttonType == "RESUME")
         {
-            // player.GetComponent<FirstPersonCam>().gameResuming();
-            // pauseMenu.SetActive(false);
-            // isGamePaused = false;
             gameResume();
         }
         else if (buttonType == "RESTART")
@@ -33,8 +30,6 @@ public class isPaused : MonoBehaviour
         }
         else if (buttonType == "QUIT")
         {
-            print(0);
-            // isGamePaused = false;
             SceneManager.LoadScene(0);
         }
 
@@ -51,8 +46,6 @@ public class isPaused : MonoBehaviour
                 menu_instruction.SetActive(true);
                 isInstruction = true;
             }
-
-
         }
     }
 
