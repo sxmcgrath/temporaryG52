@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 389158739}
   - component: {fileID: 389158738}
   m_Layer: 0
-  m_Name: NewGameDialog_YesButton
+  m_Name: button_toGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3398,10 +3398,6 @@ MonoBehaviour:
   GeneralSettingsCanvas: {fileID: 1053070461060097}
   menu_instruction: {fileID: 758951823}
   dialog_newStart: {fileID: 846682964}
-  controlSenFloat: 4
-  volumeText: {fileID: 0}
-  volumeSlider: {fileID: 0}
-  invertYToggle: {fileID: 0}
 --- !u!114 &114759344440918653
 MonoBehaviour:
   m_ObjectHideFlags: 0

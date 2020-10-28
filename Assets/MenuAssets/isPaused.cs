@@ -31,18 +31,21 @@ public class isPaused : MonoBehaviour
         else if (buttonType == "QUIT")
         {
             print(0);
+            // isGamePaused = false;
             SceneManager.LoadScene(0);
         }
     }
 
 
+    void Start()
+    {
+        gameResume();
+    }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Q))
         {
-
             if (isGamePaused)
             {
                 gameResume();

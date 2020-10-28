@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿
+/**
+	The idea and skeleton of the codes are adapted from the Unity Asset Stor [Full Main Menu System]:
+    The link can be found here: https://assetstore.unity.com/packages/tools/gui/full-menu-system-free-158919
+*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,21 +17,17 @@ using UnityEngine.EventSystems;
 public class MenuController : MonoBehaviour
 {
 
-    // 
-
 
     private static int current_level = 1;
 
-    // #region Default Values
+
     [Header("Default Menu Values")]
 
 
     [Header("Levels To Load")]
 
     private int menuNumber;
-    // #endregion
 
-    // #region Menu Dialogs
     [Header("Main Menu Components")]
     [SerializeField] private GameObject menuDefaultCanvas;
     [SerializeField] private GameObject GeneralSettingsCanvas;
@@ -35,25 +38,19 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject dialog_newStart;
     // #endregion
 
-    // #region Slider Linking
-    [Header("Menu Sliders")]
-    public float controlSenFloat = 2f;
-    [Space(10)]
+    // // #region Slider Linking
+    // [Header("Menu Sliders")]
+    // public float controlSenFloat = 2f;
+    // [Space(10)]
 
-    [SerializeField] private Text volumeText;
-    [SerializeField] private Slider volumeSlider;
-    [Space(10)]
-    [SerializeField] private Toggle invertYToggle;
-    // #endregion
-
-    // #region Initialisation - Button Selection & Menu Order
+    // [SerializeField] private Text volumeText;
+    // [SerializeField] private Slider volumeSlider;
+    // [Space(10)]
+    // [SerializeField] private Toggle invertYToggle;
     private void Start()
     {
         menuNumber = 1;
     }
-    // #endregion
-
-    //MAIN SECTION
 
     private void Update()
     {
