@@ -25,6 +25,7 @@ public class TongueSwing : MonoBehaviour {
     private RaycastHit grappleable;
     private bool intersecting = false, strongTongue = false;
     private GameObject curAttachedObject;
+    private Spacefloat platformScript;
 
     public float getMaxTongueLength() {
         return maxTongueLength;
@@ -60,6 +61,13 @@ public class TongueSwing : MonoBehaviour {
         } else if (joint && Input.GetMouseButtonUp(0)) {
             RetractTongue();
         }
+
+        // If tongue attached to platform with Spacefloat script, move tongue along with moving platform
+        if (platformScript != null) {
+            grapplePoint = Vector3.MoveTowards(grapplePoint, platformScript.getTarget().position, platformScript.speed * Time.deltaTime);
+            originGrapplePosition = grapplePoint;
+            joint.connectedAnchor = grapplePoint;
+        }
     }
 
     // Late update as we want to draw the tongue after the positions are taken.
@@ -77,6 +85,11 @@ public class TongueSwing : MonoBehaviour {
         if (Physics.Raycast(frogViewCam.position, frogViewCam.forward, out hit, maxTongueLength, grappleableLayers)) {
             if (hit.collider != null) {
                 curAttachedObject = hit.collider.gameObject;
+                platformScript = curAttachedObject.GetComponent<Spacefloat>();
+                if (platformScript != null) {
+                    Debug.Log(platformScript.speed);
+                }
+                
                 grapplePoint = hit.point;
 
                 joint = player.gameObject.AddComponent<SpringJoint>();
@@ -123,6 +136,10 @@ public class TongueSwing : MonoBehaviour {
         if (Physics.Raycast(frogViewCam.position, lineDir.normalized, out intersect, tongueLength, grappleableLayers)) {
             if (intersect.collider != null) {
                 if (strongTongue || curAttachedObject == intersect.collider.gameObject) {
+                    platformScript = curAttachedObject.GetComponent<Spacefloat>();
+                    if (platformScript != null) {
+                        Debug.Log(platformScript.speed);
+                    }
                     grapplePoint = intersect.point;
                     joint.connectedAnchor = grapplePoint;
 
@@ -150,6 +167,7 @@ public class TongueSwing : MonoBehaviour {
 
     // Stop sticking tongue to object
     private void RetractTongue() {
+        platformScript = null;
         intersecting = false;
         lr.positionCount = 0;
         Destroy(joint);
