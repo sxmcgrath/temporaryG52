@@ -6,15 +6,19 @@ public class DrawPowerup : MonoBehaviour {
 
     public GameObject lengthPowerUp, speedPowerUp, player;
     private List<PowerUpsAvailable> powerUps = new List<PowerUpsAvailable>();
-    private Vector2 canvasWidthHeight, powerupWidthHeight;
-    private float UIBuffer = 5.0f;
+    private Vector2 canvasWidthHeight;
+    private float UIBuffer = 5.0f, powerupWidth;
 
     void Start() {
         RectTransform canvasRect = GetComponent<RectTransform>();
         canvasWidthHeight = new Vector2(canvasRect.rect.width, canvasRect.rect.height);
 
-        RectTransform powerupRect = speedPowerUp.GetComponent<RectTransform>();
-        powerupWidthHeight = new Vector2(powerupRect.rect.width, powerupRect.rect.height);
+        RectTransform speedRect = speedPowerUp.GetComponent<RectTransform>();
+        RectTransform lengthRect = lengthPowerUp.GetComponent<RectTransform>();
+        speedRect.sizeDelta = new Vector2(canvasRect.rect.width/12.5f,canvasRect.rect.width/12.5f);
+        lengthRect.sizeDelta = new Vector2(canvasRect.rect.width/12.5f,canvasRect.rect.width/12.5f);
+
+        powerupWidth = canvasRect.rect.width/12.5f;
         
     }
 
@@ -27,12 +31,12 @@ public class DrawPowerup : MonoBehaviour {
 
                 if (powerUps[i] == PowerUpsAvailable.MaxTongueLength) {
                     lengthPowerUp.SetActive(true);
-                    lengthPowerUp.transform.position = new Vector2((transform.position.x - (canvasWidthHeight.x / 2) + (powerupWidthHeight.x / 2) + UIBuffer) + (powerupWidthHeight.x * i), 
-                                                                  transform.position.y + (canvasWidthHeight.y / 2) - (powerupWidthHeight.y / 2) - UIBuffer);
+                    lengthPowerUp.transform.position = new Vector2((transform.position.x - (canvasWidthHeight.x / 2) + (powerupWidth / 2) + UIBuffer) + ((powerupWidth + UIBuffer) * i), 
+                                                                  transform.position.y + (canvasWidthHeight.y / 2) - (powerupWidth / 2) - UIBuffer);
                 } else if (powerUps[i] == PowerUpsAvailable.Speed) {
                     speedPowerUp.SetActive(true);
-                    speedPowerUp.transform.position = new Vector2((transform.position.x - (canvasWidthHeight.x / 2) + (powerupWidthHeight.x / 2) + UIBuffer) + (powerupWidthHeight.x * i), 
-                                                                  transform.position.y + (canvasWidthHeight.y / 2) - (powerupWidthHeight.y / 2) - UIBuffer);
+                    speedPowerUp.transform.position = new Vector2((transform.position.x - (canvasWidthHeight.x / 2) + (powerupWidth / 2) + UIBuffer) + ((powerupWidth + UIBuffer) * i), 
+                                                                  transform.position.y + (canvasWidthHeight.y / 2) - (powerupWidth / 2) - UIBuffer);
                 }
                 if (!powerUps.Contains(PowerUpsAvailable.MaxTongueLength)) {
                     lengthPowerUp.SetActive(false);

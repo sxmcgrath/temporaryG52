@@ -3387,9 +3387,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 6
-  jumpForce: 15
+  jumpForce: 20
   jumpRaycastDistance: 1.7
   fallMult: 2.5
+  maxVelocity: 100
   swingMult: 1.5
 --- !u!114 &913738808
 MonoBehaviour:
@@ -3415,7 +3416,7 @@ Rigidbody:
   m_GameObject: {fileID: 913738806}
   serializedVersion: 2
   m_Mass: 1.5
-  m_Drag: 0.2
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
