@@ -12,7 +12,7 @@ public enum PowerUpsAvailable {
 public class Powerup : MonoBehaviour {
 
     public PowerUpsAvailable powerUpType;
-    public float speedBuff = 4.0f, tongueLengthMultiplier = 2.0f;
+    public float speedBuff = 2.0f, tongueLengthMultiplier = 2.0f;
     public float buffDuration = 10.0f, amplitude = 0.5f, frequency = 1f;
 
     // Position Storage Variables
@@ -51,7 +51,7 @@ public class Powerup : MonoBehaviour {
         
         // Apply effect to player
         if (powerUpType == PowerUpsAvailable.Speed) {
-            movement.setSpeed(movement.getSpeed() + speedBuff);
+            movement.setSpeed(movement.getSpeed() * speedBuff);
             playerPowerups.AddPowerUp(powerUpType);
         } else if (powerUpType == PowerUpsAvailable.MaxTongueLength) {
             tongue.setMaxTongueLength(tongue.getMaxTongueLength() * tongueLengthMultiplier);
